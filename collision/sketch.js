@@ -17,9 +17,11 @@ function draw() {
         bubbles[i].update();
         bubbles[i].display();
         for (var j=i+1; j < bubbles.length; j++) {
-            if (bubbles[i].intersects(bubbles[j])) {
+            if (bubbles[i].intersects(bubbles[j]) && i!=j) {
                 bubbles[i].changeColor();
                 bubbles[j].changeColor();
+                console.log(bubbles[i],bubbles[j]);
+                console.log(bubbles[i].intersects(bubbles[j]));
             }
         }
     }
@@ -56,7 +58,6 @@ function Bubble(x, y, r, val) {
     this.changeColor = () => {
         fill(random(255), random(255), random(255));
         ellipse(this.x, this.y, this.r*2);
-        fill(0);
         text(this.val, this.x, this.y);
     }
 }
